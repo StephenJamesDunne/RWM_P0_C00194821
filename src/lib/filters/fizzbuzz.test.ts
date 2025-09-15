@@ -3,9 +3,9 @@ import { fizzbuzz } from './fizzbuzz';
 
 describe('fizzbuzz filter', () => {
     it('returns "3" for multiples of 3', () => {
-        expect(fizzbuzz(3)).toBe('fizz');
-        expect(fizzbuzz(6)).toBe('fizz');
-        expect(fizzbuzz(9)).toBe('fizz');
+        expect(fizzbuzz(3)).toBe('3');
+        expect(fizzbuzz(6)).toBe('3');
+        expect(fizzbuzz(9)).toBe('3');
     });
 
     it('returns "5" for multiples of 5', () => {
