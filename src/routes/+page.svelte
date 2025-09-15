@@ -1,14 +1,15 @@
 <script lang="ts">
     import { cubes } from '$lib/filters';
-    let raw = '1 3 5 7 9 999';
-    $: input = raw.trim().split(/\s+/).filter(Boolean).map(Number);
-    $: output = cubes(input);
+    import { fizzbuzz, fizzbuzzes } from '$lib/filters';
+    let sampleInput = '4 3 6 30 10 12';
+    $: input = sampleInput.trim().split(/\s+/).filter(Boolean).map(Number);
+    $: output = fizzbuzzes(input);
 </script>
 
 <h1>Sequence Filter Demo</h1>
 <label>
     Input (space-separated integers):
-    <input bind:value={raw} placeholder="e.g., 4 3 2 1 0" />
+    <input bind:value={sampleInput} placeholder="4 3 6 30 10 12"/>
 </label>
 
 <h2>Output</h2>
