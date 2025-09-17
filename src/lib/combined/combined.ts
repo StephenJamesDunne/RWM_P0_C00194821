@@ -1,9 +1,9 @@
-import { fizzbuzz, fizzbuzzes } from "$lib/filters";
+import { fizzbuzz, fizzbuzzes } from "../filters";
 
 // Prefer importing from the peer package root
 import { decrementlessthanfirst } from "peer-filter-C00288668/src/lib/filters";
 
-export function combinedFilter(xs: number[]): (number | string)[] {
+export function combinedFilter(xs: number[]): (number)[] {
     const afterDecrement = decrementlessthanfirst(xs);
     return fizzbuzzes(afterDecrement);
 }

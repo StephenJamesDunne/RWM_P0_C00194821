@@ -10,7 +10,8 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"test": "vitest"
+		"test": "vitest",
+		"emit:results": "node scripts/emit-results.mjs"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",
