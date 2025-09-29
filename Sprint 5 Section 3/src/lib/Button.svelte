@@ -1,12 +1,22 @@
 <script lang="ts">
-  export let label: string = 'Submit'; // changed default
-  export let variant: 'primary' | 'secondary' = 'primary'; // new prop
+  import { createEventDispatcher } from 'svelte';
+  export let label: string = 'Submit'; // from A
+  export let variant: 'primary' | 'secondary' = 'primary'; // from A
+  export let disabled: boolean = false; // from B
+
+  const dispatch = createEventDispatcher<{ pressed: { at: number } }>();
+
+  function handleClick() {
+    if (disabled) return;
+    dispatch('pressed', { at: Date.now() });
+  }
 </script>
 
 <button
   class="btn"
   data-variant={variant}
-  on:click={() => console.log('clicked')}
+  {disabled}
+  on:click={handleClick}
 >
   {label}
 </button>
@@ -16,7 +26,9 @@
     padding: 0.5rem 1rem;
     color: white;
     border-radius: 0.375rem;
+    opacity: var(--opacity, 1);
   }
-  .btn[data-variant="primary"] { background: #2563eb; }  /* blue-600 */
-  .btn[data-variant="secondary"] { background: #6b7280; } /* gray-500 */
+  .btn:disabled { --opacity: 0.6; cursor: not-allowed; }
+  .btn[data-variant="primary"] { background: #2563eb; }
+  .btn[data-variant="secondary"] { background: #6b7280; }
 </style>
