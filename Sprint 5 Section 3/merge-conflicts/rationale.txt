@@ -1,0 +1,3 @@
+- Opened 3 panel GUI, compared local with remote versions and combined from both to get best version of the current component.
+- The current version of the component is better overall because of the disabled prop and the visual feedback on the disabled state.
+- Using createEventDispatcher is better than hardcoding console.log so that the component isn't tied to debugging output.
