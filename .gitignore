@@ -162,3 +162,19 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# To reduce conflicts
+.gitattributes
+
+* text = auto eol=lf
+*.svelte text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+
+# Treat binaries safely
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
