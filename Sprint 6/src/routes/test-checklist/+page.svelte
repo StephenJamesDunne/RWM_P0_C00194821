@@ -1,14 +1,6 @@
 <script lang="ts">
   import ChecklistItem from '$lib/components/component.svelte';
-  
-  let items = [
-    { id: 1, label: 'Complete project setup', done: false },
-    { id: 2, label: 'Write tests', done: false },
-    { id: 3, label: 'Deploy application', done: false }
-  ];
-  
-  // Current states (updates immediately when checkboxes change)
-  $: currentCompletedCount = items.filter(item => item.done).length;
+  import { itemsStore, completedStore, percentStore } from '$lib/stores/checklist';
   
   // Submitted states (only updates when Submit is clicked)
   let submittedCount = 0;
@@ -16,23 +8,26 @@
   
   function handleItemChange(event: CustomEvent) {
     const { id, done } = event.detail;
-    const itemIndex = items.findIndex(item => item.id === id);
-    if (itemIndex !== -1) {
-      items[itemIndex].done = done;
-      items = [...items];
-    }
+
+    itemsStore.update(items => {
+      const itemIndex = items.findIndex(item => item.id === id);
+      if (itemIndex !== -1) {
+        items[itemIndex].done = done;
+      }
+      return [...items];
+    });
   }
   
   function handleSubmit() {
     // Update the displayed percentage only when Submit is clicked
-    submittedCount = currentCompletedCount;
-    submittedPercentage = Math.round((submittedCount / items.length) * 100);
+    submittedCount = $completedStore;
+    submittedPercentage = $percentStore;
   }
 </script>
 
 <div class="p-4">
   <h1>Checklist</h1>
-  <p>Progress: {submittedCount}/{items.length} ({submittedPercentage}%)</p>
+  <p>Progress: {submittedCount}/{$itemsStore.length} ({submittedPercentage}%)</p>
   
   <!-- Progress Bar -->
   <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
@@ -43,7 +38,7 @@
   </div>
   
   <div class="space-y-2 mt-4">
-    {#each items as item (item.id)}
+    {#each $itemsStore as item (item.id)}
       <ChecklistItem 
         id={item.id} 
         label={item.label} 
@@ -58,6 +53,6 @@
     on:click={handleSubmit}
     class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
   >
-    Submit ({currentCompletedCount}/{items.length} currently checked)
+    Submit ({$completedStore}/{$itemsStore.length} currently checked)
   </button>
 </div>
