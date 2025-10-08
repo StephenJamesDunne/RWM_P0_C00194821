@@ -1,4 +1,4 @@
-.main-wrapper {
+.container {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
@@ -34,21 +34,6 @@
 .nav-link:hover {
     background-color: #005999;
     text-decoration: none;
-}
-
-.progress-container {
-    width: 100%;
-    background-color: #e5e7eb;
-    border-radius: 9999px;
-    height: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.progress-bar {
-    background-color: #2563eb;
-    height: 1rem;
-    border-radius: 9999px;
-    transition: width 0.3s ease;
 }
 
 .checklist-items {
