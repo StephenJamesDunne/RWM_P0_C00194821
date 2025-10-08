@@ -4,5 +4,5 @@
 </script>
 
 <div class="container">
-    <ChecklistWithSubmit title="Test Checklist" showProgress={true} />
+    <ChecklistWithSubmit title="Stores Example" showProgress={true} />
 </div>
