@@ -4,6 +4,7 @@
     
     export let title: string = 'Checklist';
     export let showProgress: boolean = true;
+    export let target: number = 80;
     
     // Submitted states (only updates when Submit is clicked)
     let submittedCount = 0;
@@ -76,6 +77,12 @@
             class:animating={isAnimating}
             style="width: {animatedPercentage}%"
         ></div>
+
+        <div 
+            class="goal-marker" 
+            style="left: calc({target}%)"
+            class:goal-reached={submittedPercentage >= target}
+        ></div>
     </div>
 {/if}
 
@@ -132,5 +139,17 @@
 
     .progress-bar-animated.animating {
         transition: width 1s ease-out;
+    }
+
+    .goal-marker {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background-color: #666;
+        top: 0;
+        z-index: 3;
+    }
+    .goal-reached {
+        background-color: green;
     }
 </style>
