@@ -1,6 +1,6 @@
 // Pure function: cube a single integer
 export function cube(x: number): number {
-    return x * x * x;
+    return x ** 3;
 }
 
 // Map over a sequence
