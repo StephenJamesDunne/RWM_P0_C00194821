@@ -5,6 +5,7 @@
     
     export let title: string = 'Checklist';
     export let showProgress: boolean = true;
+    export let target: number = 80;
     
     // Submitted states (only updates when Submit is clicked)
     let submittedCount = 0;
@@ -77,6 +78,7 @@
             class:animating={isAnimating}
             style="width: {animatedPercentage}%"
         ></div>
+<<<<<<< HEAD
         <div class="progress-wrapper">
   <div class="progress-fill" style="width: {submittedPercentage}%"></div>
   <span 
@@ -86,6 +88,15 @@
   ></span>
 </div>
 
+||||||| parent of 3286e1c (edited percentage loading component in sprint 6)
+=======
+
+        <div 
+            class="goal-marker" 
+            style="left: calc({target}%)"
+            class:goal-reached={submittedPercentage >= target}
+        ></div>
+>>>>>>> 3286e1c (edited percentage loading component in sprint 6)
     </div>
 {/if}
 
@@ -143,12 +154,16 @@
     .progress-bar-animated.animating {
         transition: width 1s ease-out;
     }
-    .target-line {
-    position: absolute;
-    border-left: 3px solid #999;
-    height: 100%;
-  }
-  .target-line[data-achieved="true"] {
-    border-color: #00ff00;
-  }
+
+    .goal-marker {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background-color: #666;
+        top: 0;
+        z-index: 3;
+    }
+    .goal-reached {
+        background-color: green;
+    }
 </style>
