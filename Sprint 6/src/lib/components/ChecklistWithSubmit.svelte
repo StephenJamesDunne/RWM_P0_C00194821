@@ -1,6 +1,7 @@
 <script lang="ts">
     import ChecklistItem from './component.svelte';
     import { itemsStore, completedStore, percentStore } from '$lib/stores/checklist';
+    export let targetPercent: number = 80; // different prop name
     
     export let title: string = 'Checklist';
     export let showProgress: boolean = true;
@@ -76,6 +77,15 @@
             class:animating={isAnimating}
             style="width: {animatedPercentage}%"
         ></div>
+        <div class="progress-wrapper">
+  <div class="progress-fill" style="width: {submittedPercentage}%"></div>
+  <span 
+    class="target-line" 
+    style="left: {targetPercent}%"
+    data-achieved={submittedPercentage >= targetPercent}
+  ></span>
+</div>
+
     </div>
 {/if}
 
@@ -133,4 +143,12 @@
     .progress-bar-animated.animating {
         transition: width 1s ease-out;
     }
+    .target-line {
+    position: absolute;
+    border-left: 3px solid #999;
+    height: 100%;
+  }
+  .target-line[data-achieved="true"] {
+    border-color: #00ff00;
+  }
 </style>
