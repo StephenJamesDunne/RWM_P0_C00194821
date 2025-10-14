@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ChecklistItem from './component.svelte';
 	import { itemsStore, completedStore, percentStore } from '$lib/stores/checklist';
-	export let targetPercent: number = 80; // different prop name
+	export let targetPercent: number = 80;
 
 	export let title: string = 'Checklist';
 	export let showProgress: boolean = true;
@@ -97,6 +97,10 @@
 		<ChecklistItem id={item.id} label={item.label} done={item.done} on:change={handleItemChange} />
 	{/each}
 </div>
+
+{#if submittedPercentage >= targetPercent}
+    <div class="success-message">Goals reached!</div>
+{/if}
 
 <button on:click={handleSubmit} class="submit-button">
 	Submit ({$completedStore}/{$itemsStore.length} currently checked)
