@@ -99,7 +99,7 @@
 </div>
 
 {#if submittedPercentage >= targetPercent}
-    <div class="success-message">I'm blue dah bah dee bah dah die!</div>
+    <div class="success-message">I hope this is right, I'm not doing this again</div>
 {/if}
 
 <button on:click={handleSubmit} class="submit-button">
